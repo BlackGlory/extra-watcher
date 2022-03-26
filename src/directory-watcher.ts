@@ -50,9 +50,13 @@ export class DirectoryWatcher {
     }
   , end: {}
   }, 'idle')
-  private events: Event[] = []
+  private _events: Event[] = []
   private subject: Subject<Event> = new Subject()
   private watcher?: Watcher.type
+
+  get events(): readonly Event[] {
+    return this._events
+  }
 
   constructor(private dirname: string) {}
 
@@ -63,7 +67,7 @@ export class DirectoryWatcher {
   async start(): Promise<void> {
     this.fsm.send('start')
 
-    this.events = []
+    this._events = []
     this.watcher = new Watcher(path.resolve(this.dirname), {
       ignoreInitial: true
     , recursive: true
@@ -75,7 +79,7 @@ export class DirectoryWatcher {
       , target: Target.File
       , pathname: filePath
       }
-      this.events.push(event)
+      this._events.push(event)
       this.subject.next(event)
     })
 
@@ -85,7 +89,7 @@ export class DirectoryWatcher {
       , target: Target.Directory
       , pathname: directoryPath
       }
-      this.events.push(event)
+      this._events.push(event)
       this.subject.next(event)
     })
 
@@ -95,7 +99,7 @@ export class DirectoryWatcher {
       , target: Target.File
       , pathname: filePath
       }
-      this.events.push(event)
+      this._events.push(event)
       this.subject.next(event)
     })
 
@@ -105,7 +109,7 @@ export class DirectoryWatcher {
       , target: Target.File
       , pathname: filePath
       }
-      this.events.push(event)
+      this._events.push(event)
       this.subject.next(event)
     })
 
@@ -115,7 +119,7 @@ export class DirectoryWatcher {
       , target: Target.Directory
       , pathname: directoryPath
       }
-      this.events.push(event)
+      this._events.push(event)
       this.subject.next(event)
     })
 
@@ -130,11 +134,11 @@ export class DirectoryWatcher {
   }
 
   reset(): void {
-    this.events = []
+    this._events = []
   }
 
   isChanged(): boolean {
-    return this.events.length > 0
+    return this._events.length > 0
   }
 
   /**
@@ -145,7 +149,7 @@ export class DirectoryWatcher {
   isFileCreated(filename: string): boolean {
     const absoluteFilename = path.resolve(filename)
 
-    return this.events.reduce<boolean>((result, event) => {
+    return this._events.reduce<boolean>((result, event) => {
       if (
         event.type === 'created' &&
         event.target === Target.File && 
@@ -182,7 +186,7 @@ export class DirectoryWatcher {
   isDirectoryCreated(dirname: string): boolean {
     const absoluteDirname = path.resolve(dirname)
 
-    return this.events.reduce<boolean>((result, event) => {
+    return this._events.reduce<boolean>((result, event) => {
       if (
         event.type === 'created' &&
         event.target === Target.Directory &&
@@ -218,7 +222,7 @@ export class DirectoryWatcher {
   isFileModified(filename: string): boolean {
     const absoluteFilename = path.resolve(filename)
 
-    return this.events.reduce<boolean>((result, event) => {
+    return this._events.reduce<boolean>((result, event) => {
       if (
         event.type === 'modified' &&
         event.target === Target.File &&
@@ -256,7 +260,7 @@ export class DirectoryWatcher {
   isDirectoryModified(dirname: string): boolean {
     const absoluteDirname = path.resolve(dirname)
 
-    return this.events.reduce<boolean>((result, event) => {
+    return this._events.reduce<boolean>((result, event) => {
       if (
         event.type === 'created' &&
         isSubPathOf(event.pathname, absoluteDirname)
@@ -307,7 +311,7 @@ export class DirectoryWatcher {
   isFileDeleted(filename: string): boolean {
     const absoluteFilename = path.resolve(filename)
 
-    return this.events.reduce<boolean>((result, event) => {
+    return this._events.reduce<boolean>((result, event) => {
       if (
         event.type === 'deleted' &&
         event.target === Target.File &&
@@ -344,7 +348,7 @@ export class DirectoryWatcher {
   isDirectoryDeleted(dirname: string): boolean {
     const absoluteDirname = path.resolve(dirname)
 
-    return this.events.reduce<boolean>((result, event) => {
+    return this._events.reduce<boolean>((result, event) => {
       if (
         event.type === 'deleted' &&
         event.target === Target.Directory &&

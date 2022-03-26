@@ -38,6 +38,8 @@ type Event =
 | IDeletedEvent
 
 class DirectoryWatcher {
+  events: readonly Event[]
+
   constructor(dirname: string)
 
   observe(): Observable<Event>

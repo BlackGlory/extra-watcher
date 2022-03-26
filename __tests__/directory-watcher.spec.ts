@@ -26,6 +26,11 @@ describe('DirectoryWatcher', () => {
         , target: 'file'
         , pathname: filename
         })
+        expect(watcher.events).toStrictEqual([{
+          type: 'created'
+        , target: 'file'
+        , pathname: filename
+        }])
       } finally {
         watcher.stop()
       }
@@ -47,6 +52,11 @@ describe('DirectoryWatcher', () => {
         , target: 'directory'
         , pathname: dirname
         })
+        expect(watcher.events).toStrictEqual([{
+          type: 'created'
+        , target: 'directory'
+        , pathname: dirname
+        }])
       } finally {
         watcher.stop()
       }
@@ -69,6 +79,11 @@ describe('DirectoryWatcher', () => {
         , target: 'file'
         , pathname: filename
         })
+        expect(watcher.events).toStrictEqual([{
+          type: 'modified'
+        , target: 'file'
+        , pathname: filename
+        }])
       } finally {
         watcher.stop()
       }
@@ -91,6 +106,11 @@ describe('DirectoryWatcher', () => {
         , target: 'file'
         , pathname: filename
         })
+        expect(watcher.events).toStrictEqual([{
+          type: 'deleted'
+        , target: 'file'
+        , pathname: filename
+        }])
       } finally {
         watcher.stop()
       }
@@ -113,6 +133,11 @@ describe('DirectoryWatcher', () => {
         , target: 'directory'
         , pathname: dirname
         })
+        expect(watcher.events).toStrictEqual([{
+          type: 'deleted'
+        , target: 'directory'
+        , pathname: dirname
+        }])
       } finally {
         watcher.stop()
       }
