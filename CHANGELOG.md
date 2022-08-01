@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/BlackGlory/extra-watcher/compare/v0.1.1...v0.2.0) (2022-08-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* `DirectoryWatcher` is now under the namespace of the same name.
+
+### Features
+
+* add `FileWatcher` ([c6b9af9](https://github.com/BlackGlory/extra-watcher/commit/c6b9af9fd23054d3cc6e490e658b9afd125f7cf7))
+* add `sideEffects` and `exports` fields ([8c3198e](https://github.com/BlackGlory/extra-watcher/commit/8c3198ef4a928320b81b06d79ebbf84d28a3f752))
+
 ### [0.1.1](https://github.com/BlackGlory/extra-watcher/compare/v0.1.0...v0.1.1) (2022-03-26)
 
 
