@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.2.1](https://github.com/BlackGlory/extra-watcher/compare/v0.2.0...v0.2.1) (2022-08-01)
+
+
+### Features
+
+* add isChanged ([e337b0f](https://github.com/BlackGlory/extra-watcher/commit/e337b0ff7c7c4e2ab862f9b3cbf13eb41831f82a))
+* export ICreatedEvent, IModifiedEvent, IDeletedEvent ([84290d6](https://github.com/BlackGlory/extra-watcher/commit/84290d61822d603180824e01954637c44d8026fc))
+
 ## [0.2.0](https://github.com/BlackGlory/extra-watcher/compare/v0.1.1...v0.2.0) (2022-08-01)
 
 
