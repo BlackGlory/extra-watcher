@@ -68,3 +68,40 @@ not "whether this event has occurred":
 - `isDirectoryModified`
 - `isFileDeleted`
 - `isDirectoryDeleted`
+
+### FileWatcher
+```ts
+type Event =
+| ICreatedEvent
+| IModifiedEvent
+| IDeletedEvent
+
+interface ICreatedEvent {
+  type: 'created'
+}
+
+interface IModifiedEvent {
+  type: 'modified'
+}
+
+interface IDeletedEvent {
+  type: 'deleted'
+}
+
+class FileWatcher {
+  events: readonly Event[]
+
+  constructor(filename: string)
+
+  observe(): Observable<Event>
+  start(): Promise<void>
+  stop(): void
+  reset(): void
+
+  isChanged(): boolean
+
+  isCreated(): boolean
+  isModified(): boolean
+  isDeleted(): boolean
+}
+```

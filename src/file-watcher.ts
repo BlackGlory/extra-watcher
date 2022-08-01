@@ -92,6 +92,10 @@ export class FileWatcher {
     this._events = []
   }
 
+  isChanged(): boolean {
+    return this._events.length > 0
+  }
+
   /**
    * 在以下情况返回真值:
    * - 文件被创建, 且在之后没有被删除
