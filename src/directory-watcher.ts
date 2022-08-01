@@ -5,14 +5,14 @@ import { isSubPathOf } from 'extra-filesystem'
 import { Subject, Observable } from 'rxjs'
 import { FiniteStateMachine } from '@blackglory/structures'
 
-export enum Target {
-  File = 'file'
-, Directory = 'directory'
-}
-
 interface IEvent {
   type: string
 }
+
+export type Event =
+| ICreatedEvent
+| IModifiedEvent
+| IDeletedEvent
 
 export interface ICreatedEvent extends IEvent {
   type: 'created'
@@ -32,10 +32,10 @@ export interface IDeletedEvent extends IEvent {
   pathname: string
 }
 
-export type Event =
-| ICreatedEvent
-| IModifiedEvent
-| IDeletedEvent
+export enum Target {
+  File = 'file'
+, Directory = 'directory'
+}
 
 export class DirectoryWatcher {
   private fsm = new FiniteStateMachine<
