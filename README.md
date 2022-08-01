@@ -9,10 +9,10 @@ yarn add extra-watcher
 ## API
 ### DirectoryWatcher
 ```ts
-enum Target {
-  File = 'file'
-, Directory = 'directory'
-}
+type Event =
+| ICreatedEvent
+| IModifiedEvent
+| IDeletedEvent
 
 interface ICreatedEvent {
   type: 'created'
@@ -32,10 +32,10 @@ interface IDeletedEvent {
   pathname: string
 }
 
-type Event =
-| ICreatedEvent
-| IModifiedEvent
-| IDeletedEvent
+enum Target {
+  File = 'file'
+, Directory = 'directory'
+}
 
 class DirectoryWatcher {
   events: readonly Event[]
