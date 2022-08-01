@@ -13,15 +13,15 @@ export type Event =
 | IModifiedEvent
 | IDeletedEvent
 
-interface ICreatedEvent extends IEvent {
+export interface ICreatedEvent extends IEvent {
   type: 'created'
 }
 
-interface IModifiedEvent extends IEvent {
+export interface IModifiedEvent extends IEvent {
   type: 'modified'
 }
 
-interface IDeletedEvent extends IEvent {
+export interface IDeletedEvent extends IEvent {
   type: 'deleted'
 }
 
