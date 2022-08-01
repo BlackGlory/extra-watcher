@@ -57,8 +57,8 @@ class DirectoryWatcher {
 }
 ```
 
-Watcher based on event sourcing, `reset` can clear events.
-A Watcher can only be started and stopped once.
+DirectoryWatcher based on event sourcing, `reset` can clear events.
+A watcher can only be started and stopped once.
 
 The following method checks "whether this condition is eventually true",
 not "whether this event has occurred":
@@ -99,9 +99,17 @@ class FileWatcher {
   reset(): void
 
   isChanged(): boolean
-
   isCreated(): boolean
   isModified(): boolean
   isDeleted(): boolean
 }
 ```
+
+FileWatcher based on event sourcing, `reset` can clear events.
+A watcher can only be started and stopped once.
+
+The following method checks "whether this condition is eventually true",
+not "whether this event has occurred":
+- `isCreated`
+- `isModified`
+- `isDeleted`
