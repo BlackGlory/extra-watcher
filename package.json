@@ -11,6 +11,15 @@
   "repository": "git@github.com:BlackGlory/extra-watcher.git",
   "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
   "license": "MIT",
+  "sideEffects": false,
+  "exports": {
+    ".": "./lib/es2018/index.js",
+    "./*": "./lib/es2018/*.js",
+    "./es2018": "./lib/es2018/index.js",
+    "./es2015": "./lib/es2015/index.js",
+    "./es2018/*": "./lib/es2018/*.js",
+    "./es2015/*": "./lib/es2015/*.js"
+  },
   "scripts": {
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet src",
     "test": "jest --runInBand --config jest.config.js",
