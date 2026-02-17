@@ -506,7 +506,7 @@ describe('DirectoryWatcher', () => {
       it('returns true', async () => {
         const watcher = new DirectoryWatcher(tmpDirname)
         const dirname = path.join(tmpDirname, 'directory')
-        await touch(dirname)
+        await touchDir(dirname)
         await watcher.start()
 
         try {
@@ -514,7 +514,7 @@ describe('DirectoryWatcher', () => {
           await delay(1000)
           const result = watcher.isDirectoryDeleted(dirname)
 
-          expect(result).toBe(false)
+          expect(result).toBe(true)
         } finally {
           watcher.stop()
         }
