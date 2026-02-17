@@ -54,7 +54,7 @@ describe('FileWatcher', () => {
     test('deleted', async () => {
       const fn = jest.fn()
       const filename = path.join(tmpDirname, 'file')
-      const watcher = new FileWatcher(tmpDirname)
+      const watcher = new FileWatcher(filename)
       await touch(filename)
       await watcher.start()
 
